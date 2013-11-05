@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tns="http://webservice.vms.wizool.cn/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="RecordWebServiceImplService" targetNamespace="http://webservice.vms.wizool.cn/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://webservice.vms.wizool.cn/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="getController" type="tns:getController" />
+      <xs:element name="getControllerResponse" type="tns:getControllerResponse" />
+      <xs:element name="upload" type="tns:upload" />
+      <xs:element name="uploadResponse" type="tns:uploadResponse" />
+      <xs:complexType name="getController">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getControllerResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="upload">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+          <xs:element minOccurs="0" name="arg1" type="xs:string" />
+          <xs:element minOccurs="0" name="arg2" type="xs:string" />
+          <xs:element minOccurs="0" name="arg3" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="uploadResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:result" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="approval" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element name="success" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="upload">
+    <wsdl:part name="parameters" element="tns:upload" />
+  </wsdl:message>
+  <wsdl:message name="getControllerResponse">
+    <wsdl:part name="parameters" element="tns:getControllerResponse" />
+  </wsdl:message>
+  <wsdl:message name="uploadResponse">
+    <wsdl:part name="parameters" element="tns:uploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="getController">
+    <wsdl:part name="parameters" element="tns:getController" />
+  </wsdl:message>
+  <wsdl:portType name="RecordWebService">
+    <wsdl:operation name="getController">
+      <wsdl:input name="getController" message="tns:getController" />
+      <wsdl:output name="getControllerResponse" message="tns:getControllerResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="upload">
+      <wsdl:input name="upload" message="tns:upload" />
+      <wsdl:output name="uploadResponse" message="tns:uploadResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RecordWebServiceImplServiceSoapBinding" type="tns:RecordWebService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getController">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getController">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getControllerResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="upload">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="upload">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="uploadResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RecordWebServiceImplService">
+    <wsdl:port name="RecordWebServiceImplPort" binding="tns:RecordWebServiceImplServiceSoapBinding">
+      <soap:address location="http://192.168.1.101:8080/vms/services/RecordWebService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
